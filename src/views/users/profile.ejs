@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head.ejs')  %> 
+    <script src="/js/imagePreview.js"></script>
+<body>
+    <%- include('../partials/header.ejs')  %> 
+    <main class="container">
+        <h3 class="text-center">Profile</h3>
+        <div class="container col-md-4">
+            <form class="row g-3" action="/users/editProfile/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="col-12">
+                    <label for="inputName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="inputName" name="nombre" value="<%= (locals.old && old.nombre) ? old.nombre : user.nombre %>">
+                    <small class="text-danger"><%= (locals.errors  && errors.nombre) ? errors.nombre.msg : "" %></small>
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="inputAddress" name="direccion" value="<%= (locals.old && old.nombre) ? old.nombre : user.direccion %>">
+                    <small class="text-danger"><%= (locals.errors  && errors.direccion) ? errors.direccion.msg : "" %></small>
+                </div>
+                <div class="col-12">
+                    <label for="inputTel" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="inputTel" name="telefono" value="<%= (locals.old && old.telefono) ? old.telefono : user.telefono %>">
+                    <small class="text-danger"><%= (locals.errors  && errors.telefono) ? errors.telefono.msg : "" %></small>
+                </div>
+                <div class="col-12">
+                    <figure class="text-center">
+                        <img src="/images/avatars/<%= user.avatar %> " alt="" width="200px" height="200px">
+                    </figure>
+                    <label for="inputFile" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="avatar" id="inputFile">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+   
+    <%- include('../partials/scripts.ejs')  %> 
+</body>
+</html>

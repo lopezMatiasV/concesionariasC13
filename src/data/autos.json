@@ -1,0 +1,632 @@
+[
+  {
+    "id": 1,
+    "marca": "volkswagen",
+    "modelo": "scirocco",
+    "anio": "2016",
+    "color": "black",
+    "sucursal": 1,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 2,
+    "marca": "Peugeot",
+    "modelo": "207",
+    "anio": 2020,
+    "color": "red",
+    "sucursal": 1,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 3,
+    "marca": "chevrolet",
+    "modelo": "cruze",
+    "anio": 2020,
+    "color": "white",
+    "sucursal": 1,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 4,
+    "marca": "nissan",
+    "modelo": "x-trail",
+    "anio": 2020,
+    "color": "brown",
+    "sucursal": 1,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 5,
+    "marca": "chevrolet",
+    "modelo": "onix",
+    "anio": 2017,
+    "color": "white",
+    "sucursal": 1,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 6,
+    "marca": "renault",
+    "modelo": "kangoo",
+    "anio": 2016,
+    "color": "black",
+    "sucursal": 1,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 7,
+    "marca": "audi",
+    "modelo": "a3",
+    "anio": 2020,
+    "color": "black",
+    "sucursal": 1,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 8,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 1,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 9,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 1,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 10,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 1,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 11,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 1,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 12,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 1,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 13,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 1,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 14,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 1,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 15,
+    "marca": "fiat",
+    "modelo": "toro",
+    "anio": 2019,
+    "color": "black",
+    "sucursal": 2,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 16,
+    "marca": "volkswagen",
+    "modelo": "vento",
+    "anio": 2019,
+    "color": "black",
+    "sucursal": 2,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 17,
+    "marca": "ford",
+    "modelo": "focus",
+    "anio": 2014,
+    "color": "blue",
+    "sucursal": 2,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 18,
+    "marca": "ford",
+    "modelo": "fiesta",
+    "anio": 2010,
+    "color": "white",
+    "sucursal": 2,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 19,
+    "marca": "nissan",
+    "modelo": "x-trail",
+    "anio": 2020,
+    "color": "brown",
+    "sucursal": 2,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 20,
+    "marca": "chevrolet",
+    "modelo": "onix",
+    "anio": 2017,
+    "color": "white",
+    "sucursal": 2,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 21,
+    "marca": "volkswagen",
+    "modelo": "amarok",
+    "anio": 2020,
+    "color": "black",
+    "sucursal": 2,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 22,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 2,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 23,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 2,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 24,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 2,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 25,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 2,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 26,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 2,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 27,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 2,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 28,
+    "marca": "volkswagen",
+    "modelo": "amarok",
+    "anio": 2019,
+    "color": "white",
+    "sucursal": 3,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 29,
+    "marca": "volkswagen",
+    "modelo": "amarok",
+    "anio": 2010,
+    "color": "gray",
+    "sucursal": 3,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 30,
+    "marca": "audi",
+    "modelo": "tt",
+    "anio": 2019,
+    "color": "white",
+    "sucursal": 3,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 31,
+    "marca": "audi",
+    "modelo": "tt",
+    "anio": 2012,
+    "color": "black",
+    "sucursal": 3,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 32,
+    "marca": "chevrolet",
+    "modelo": "cruze",
+    "anio": 2018,
+    "color": "black",
+    "sucursal": 3,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 33,
+    "marca": "audi",
+    "modelo": "q5",
+    "anio": 2018,
+    "color": "black",
+    "sucursal": 3,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 34,
+    "marca": "audi",
+    "modelo": "q5",
+    "anio": 2015,
+    "color": "blue",
+    "sucursal": 3,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 35,
+    "marca": "chevrolet",
+    "modelo": "camaro",
+    "anio": 2015,
+    "color": "red",
+    "sucursal": 3,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 36,
+    "marca": "renault",
+    "modelo": "captur",
+    "anio": 2020,
+    "color": "orange",
+    "sucursal": 3,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 37,
+    "marca": "fiat",
+    "modelo": "argo",
+    "anio": 2020,
+    "color": "white",
+    "sucursal": 3,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 38,
+    "marca": "renault",
+    "modelo": "duster",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 3,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 39,
+    "marca": "renault",
+    "modelo": "sandero",
+    "anio": 2020,
+    "color": "blue",
+    "sucursal": 3,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 40,
+    "marca": "ford",
+    "modelo": "ka",
+    "anio": 2020,
+    "color": "green",
+    "sucursal": 3,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 41,
+    "marca": "peugeot",
+    "modelo": "partner",
+    "anio": 2020,
+    "color": "white",
+    "sucursal": 3,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 42,
+    "marca": "toyota",
+    "modelo": "hilux",
+    "anio": 2020,
+    "color": "white",
+    "sucursal": 3,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 43,
+    "marca": "fiat",
+    "modelo": "cronos",
+    "anio": 2020,
+    "color": "red",
+    "sucursal": 3,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 44,
+    "marca": "chevrolet",
+    "modelo": "camaro",
+    "anio": 20120,
+    "color": "black",
+    "sucursal": 4,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 45,
+    "marca": "nissan",
+    "modelo": "note",
+    "anio": 2020,
+    "color": "white",
+    "sucursal": 4,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 46,
+    "marca": "chevrolet",
+    "modelo": "onix",
+    "anio": 2019,
+    "color": "red",
+    "sucursal": 4,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 47,
+    "marca": "volkswagen",
+    "modelo": "scirocco",
+    "anio": 2015,
+    "color": "white",
+    "sucursal": 4,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 48,
+    "marca": "volkswagen",
+    "modelo": "golf",
+    "anio": 2016,
+    "color": "white",
+    "sucursal": 4,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 49,
+    "marca": "nissan",
+    "modelo": "sentra",
+    "anio": 2017,
+    "color": "black",
+    "sucursal": 4,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 50,
+    "marca": "citroen",
+    "modelo": "c4",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 4,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 51,
+    "marca": "citroen",
+    "modelo": "berlingo",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 4,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 52,
+    "marca": "peugeot",
+    "modelo": "208",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 4,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 53,
+    "marca": "fiat",
+    "modelo": "fiorino",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 4,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 54,
+    "marca": "toyota",
+    "modelo": "etios",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 4,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 55,
+    "marca": "ford",
+    "modelo": "ecosport",
+    "anio": 2015,
+    "color": "red",
+    "sucursal": 4,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 56,
+    "marca": "chery",
+    "modelo": "tiggo",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 4,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 57,
+    "marca": "renault",
+    "modelo": "sandero",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 4,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 58,
+    "marca": "nissan",
+    "modelo": "note",
+    "anio": 2018,
+    "color": "red",
+    "sucursal": 5,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 59,
+    "marca": "chevrolet",
+    "modelo": "camaro",
+    "anio": 2018,
+    "color": "white",
+    "sucursal": 5,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 60,
+    "marca": "chevrolet",
+    "modelo": "onix",
+    "anio": 2016,
+    "color": "gray",
+    "sucursal": 5,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 61,
+    "marca": "honda",
+    "modelo": "civic",
+    "anio": 2020,
+    "color": "black",
+    "sucursal": 5,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 62,
+    "marca": "audi",
+    "modelo": "a6",
+    "anio": 2016,
+    "color": "red",
+    "sucursal": 5,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 63,
+    "marca": "nissan",
+    "modelo": "x-trail",
+    "anio": 2016,
+    "color": "gray",
+    "sucursal": 5,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 64,
+    "marca": "peugeot",
+    "modelo": "2008",
+    "anio": 2020,
+    "color": "green",
+    "sucursal": 5,
+    "imagen": "auto3.jpg"
+  },
+  {
+    "id": 65,
+    "marca": "toyota",
+    "modelo": "hilux",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 5,
+    "imagen": "auto4.jpg"
+  },
+  {
+    "id": 66,
+    "marca": "volkswagen",
+    "modelo": "saveiro",
+    "anio": 2020,
+    "color": "blue",
+    "sucursal": 5,
+    "imagen": "auto5.jpg"
+  },
+  {
+    "id": 67,
+    "marca": "fiat",
+    "modelo": "golf",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 5,
+    "imagen": "auto.jpg"
+  },
+  {
+    "id": 68,
+    "marca": "fiat",
+    "modelo": "palio",
+    "anio": 2017,
+    "color": "white",
+    "sucursal": 5,
+    "imagen": "auto1.jpg"
+  },
+  {
+    "id": 69,
+    "marca": "peugeot",
+    "modelo": "307",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 5,
+    "imagen": "auto2.jpg"
+  },
+  {
+    "id": 70,
+    "marca": "renault",
+    "modelo": "sandero",
+    "anio": 2020,
+    "color": "gray",
+    "sucursal": 5,
+    "imagen": "auto3.jpg"
+  }
+]

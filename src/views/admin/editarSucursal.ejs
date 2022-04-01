@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head.ejs')  %> 
+<body>
+    <%- include('../partials/headerAdmin.ejs')  %> 
+    <main class="container">
+        <h3 class="text-center">Editar sucursal <%= sucursal.nombre %> </h3>
+        <div class="container col-md-4">
+            <form class="row g-3" action="/admin/editarSucursal/<%= sucursal.id %>?_method=PUT" method="POST">
+                <div class="col-12">
+                    <label for="inputName" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="inputName" name="nombre" value="<%= sucursal.nombre %>">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="inputAddress" name="direccion" value="<%= sucursal.direccion %>">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="inputTel" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="inputTel" name="telefono" value="<%= sucursal.telefono %>">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <figure class="text-center">
+                        <img src="/images/<%= sucursal.imagen %>" alt="" width="200px" height="200px">
+                    </figure>
+                    
+                    <label for="inputFile" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="image" id="inputFile">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">EDITAR</button>
+                </div>
+            </form>
+        </div>
+    </main>
+   
+    <%- include('../partials/scripts.ejs')  %> 
+</body>
+</html>

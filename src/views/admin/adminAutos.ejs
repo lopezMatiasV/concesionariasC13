@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <%- include('../partials/head.ejs') %>    
+<body>
+    <main class="container-fluid">
+      <%- include('../partials/headerAdmin.ejs') %>
+      <!--Administrador de productos-->
+      <br>
+      <section class="row">
+        <article class="col-12">
+          <a href="/admin/agregarAuto"><button type="button" class="btn btn-success">Agregar</button></a>
+        </article>
+        <article class="col-12" >
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Año</th>
+                <th scope="col">Ver</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% getAutos.forEach(auto => { %>
+              <tr id="<%= auto.id %>">
+                <td><%= auto.id%> </td>
+                <td><%= auto.marca%></td>
+                <td><%= auto.modelo%> </td>
+                <td><%= auto.anio%> </td>
+                <td><a href="/autos/detalle/<%= auto.id%> "> <ion-icon name="eye-outline"></ion-icon></a></td>
+                <td><a href="/admin/editarAuto/<%= auto.id%> "> <ion-icon name="pencil-outline"></ion-icon></a></td>
+                <form action="/admin/eliminarAuto/<%= auto.id%>?_method=DELETE" method="POST">
+                  <td><button type="submit" style="border: none; background: none;"><ion-icon name="trash-outline"></ion-icon></td>
+                </form>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table> 
+        </article>       
+      </section>
+      <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head.ejs')  %> 
+<body>
+    <%- include('../partials/header.ejs')  %> 
+    <main class="container">
+        <h3 class="text-center">Registrate</h3>
+        <div class="container col-md-4">
+            <form class="row g-3" action="/users/register" method="POST">
+                <div class="col-12">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="pass" class="form-label">pass</label>
+                    <input type="password" class="form-control" id="pass" name="pass">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="pass2" class="form-label">pass2</label>
+                    <input type="password" class="form-control" id="pass2" name="pass2">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">REGISTER</button>
+                </div>
+                <div class="col-12">
+                    <p>Tenes cuenta?<a href="/users/login">Ingresa</a></p>   
+                </div>
+            </form>
+        </div>
+    </main>
+   
+    <%- include('../partials/scripts.ejs')  %> 
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head.ejs')  %> 
+<body>
+    <%- include('../partials/headerAdmin.ejs')  %> 
+    <main class="container">
+        <h3 class="text-center">Agregar Auto</h3>
+        <div class="container col-md-4">
+            <form class="row g-3" action="/admin/agregarAuto" method="POST">
+                <div class="col-12">
+                    <label for="marca" class="form-label">Marca</label>
+                    <input type="text" class="form-control" id="marca" name="marca">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="modelo" class="form-label">Modelo</label>
+                    <input type="text" class="form-control" id="modelo" name="modelo">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="anio" class="form-label">Año</label>
+                    <input type="number" class="form-control" id="anio" name="anio">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="color" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="color" name="color">
+                    <small class="text-danger"></small>
+                </div>
+                <div class="col-12">
+                    <label for="sucursal" class="form-label">Sucursal</label>
+                    <select name="sucursal" id="categoria">
+                        <% getSucursales.forEach( sucursal => { %>
+                            <option value="<%= sucursal.id %> "><%= sucursal.nombre %> </option>
+                        <% }) %> 
+                    </select>
+                    <small class="text-danger"></small>
+                </div>
+                <!-- Imagen-->
+                <div class="col-12">
+                    <label for="inputFile" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" id="inputFile" name="image"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">AGREGAR</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <%- include('../partials/scripts.ejs')  %> 
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('./partials/head.ejs')  %> 
+<body>
+    <%- include('./partials/header.ejs')  %> 
+    <main class="container" style="height: 100vh;">
+        <h2 class="text-center"><%= auto.marca %> <%= auto.modelo %></h2>
+        <p>Modelo: <%= auto.modelo %></p>
+        <p>Año: <%= auto.anio %></p>
+        <p>Color <%= auto.color %></p>
+        <p>Sucursal: <%= sucursal.nombre %></p>
+        <img src="/images/<%- auto.imagen %>" class="card-img-top" style="width: 24rem;" alt="...">
+    </main>
+    <%- include('./partials/scripts.ejs')  %> 
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('./partials/head.ejs')  %> 
+<body>
+    <%- include('./partials/header.ejs')  %> 
+    <main class="container">
+        <div class="d-flex">
+            <div class="info">
+                <h2 class="text-center">Sucursal: <%= sucursal.nombre  %> </h2>
+                <p>Direccion: <%= sucursal.direccion %>  </p>
+                <p>Teléfono: <%= sucursal.telefono %> </p>
+                <p>Cantidad de autos: <%= autos.length %> </p>
+            </div>
+            <figure>
+                <img src="/images/<%- sucursal.imagen %>" style="width: 24rem;" alt="...">
+            </figure>
+            
+        </div>
+        
+    
+        <h3 class="text-center">Autos disponibles en nuestra sucursal</h3>
+    
+        <div class="container d-flex flex-wrap justify-content-center">
+            <% autos.forEach( auto => { %>
+                <div class="card m-2 text-black bg-light" style="width: 16rem;">
+                    <img src="/images/<%- auto.imagen %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= auto.marca.toUpperCase() %></h5>
+                      <p class="card-text">Modelo: <%= auto.modelo %></p>
+                      <p class="card-text">Año: <%= auto.anio %></p>
+                      <p class="card-text">Color: <%= auto.color %></p>
+                      <a href="/autos/detalle/<%- auto.id %>" class="btn btn-primary">Detalle</a>
+                    </div>
+                  </div>
+            <% }) %>
+        </div>
+    </main>
+   
+    <%- include('./partials/scripts.ejs')  %> 
+</body>
+</html>

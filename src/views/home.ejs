@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('./partials/head.ejs')  %> 
+<body>
+    <%- include('./partials/header.ejs')  %> 
+    <h1 class="text-center"><%= titulo %> </h1>
+    <div class="container d-flex flex-wrap justify-content-center">
+        <% sucursales.forEach( sucursal => { %>
+            <div class="card m-2 text-black bg-light" style="width: 14rem;">
+                <img src="/images/<%- sucursal.imagen %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= sucursal.nombre %></h5>
+                  <p class="card-text">Dirección:  
+                    <% if (sucursal.direccion.length > 20) { %>
+                        <% let direccionSlice = sucursal.direccion.slice(0,20) %> 
+                        <%= direccionSlice %>... 
+                    <% } else { %>
+                        <%= sucursal.direccion %>
+                    <% } %> </p>
+                  <p class="card-text">Teléfono: <%= sucursal.telefono %></p>
+                  <a href="/sucursales/<%= sucursal.id %>" class="btn btn-primary">Ir a sucursal</a>
+                </div>
+              </div>
+        <% }) %>
+    </div>
+    <%- include('./partials/scripts.ejs')  %> 
+   
+</body>
+</html>

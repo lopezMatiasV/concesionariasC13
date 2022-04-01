@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <%- include('../partials/head.ejs') %>    
+<body>
+    <main class="container-fluid">
+      <%- include('../partials/headerAdmin.ejs') %>
+      <!--Administrador de productos-->
+      <br>
+      <section class="row">
+        <article class="col-12">
+          <a href="/admin/agregarSucursal"><button type="button" class="btn btn-success">Agregar</button></a>
+        </article>
+        <article class="col-12" >
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ver</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% sucursales.forEach(sucursal => { %>
+              <tr>
+                <td><%= sucursal.id%> </td>
+                <td><%= sucursal.nombre%> </td>
+                <td><a href="/sucursales/<%= sucursal.id%> "> <ion-icon name="eye-outline"></ion-icon></a></td>
+                <td><a href="/admin/editarSucursal/<%= sucursal.id%> "> <ion-icon name="pencil-outline"></ion-icon></a></td>
+                <form action="/admin/eliminarSucursal/<%= sucursal.id %>?_method=DELETE" method="POST">
+                  <td><button type="submit" style="border: none; background: none;"><ion-icon name="trash-outline"></ion-icon></td>
+                </form>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table> 
+        </article>       
+      </section>
+      <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    </main>
+  </body>
+</html>

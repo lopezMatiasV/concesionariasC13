@@ -9,7 +9,7 @@ module.exports = {
     },
     search: (req, res) => {
         let busqueda = req.query.search.toLowerCase()
-        let autos = getAutos.filter( auto => auto.marca == busqueda)
+        let autos = getAutos.filter( auto => auto.marca == busqueda || auto.modelo == busqueda)
         res.render('search',{
             autos,
             busqueda

@@ -5,6 +5,7 @@ module.exports = {
     index : (req, res) => {
         res.render('admin/adminIndex')
     },
+
     /* CRUD SUCURSALES */
 
     /* Vista de la tabla de sucursales */
@@ -33,7 +34,7 @@ module.exports = {
             nombre,
             direccion, 
             telefono,
-            imagen : 'imagen.jpg'
+            imagen : 'default-image.png'
         }
         /* Cargamos la nueva sucursal al array de sucursales */
         getSucursales.push(nuevaSucursal)
@@ -98,15 +99,62 @@ module.exports = {
         })
     },
     agregarAuto: (req, res) => {
+        let lastId = 0;
+        getAutos.forEach( auto => {
+            if(auto.id > lastId){
+                lastId = auto.id
+            }
+        })
+        let { marca, modelo, anio, color, sucursal } = req.body
         
+        let nuevoAuto = {
+            id :lastId + 1,
+            marca,
+            modelo,
+            anio,
+            color,
+            sucursal,
+            imagen : 'default-image.png'
+        }
+        getAutos.push(nuevoAuto)
+        writeJsonAutos(getAutos)
+        //res.redirect('/admin/autos')
+        res.redirect(`/admin/autos#${nuevoAuto.id}`)
     },
     editFormAuto: (req, res) => {
+        let auto = getAutos.find( auto => auto.id === +req.params.id)
+        let sucursal = getSucursales.find(sucursal => sucursal.id === auto.sucursal)
         
+        res.render('admin/editAuto', {
+            auto,
+            sucursal,
+            getSucursales
+        })
     },
     editAuto: (req, res) => {
-        
+        let { marca, modelo, anio, color, sucursal } = req.body
+        let auto = getAutos.find( auto => auto.id === +req.params.id)
+        getAutos.forEach( auto => {
+            if(auto.id === +req.params.id){
+                auto.marca = marca,
+                auto.modelo = modelo,
+                auto.anio = anio,
+                auto.color = color,
+                auto.sucursal = +sucursal,
+                auto.imagen
+            }
+        })
+        writeJsonAutos(getAutos)
+        res.redirect(`/admin/autos#${auto.id}`)
     },
     borrarAuto: (req, res) => {
-        
+        getAutos.forEach(auto => {
+            if(auto.id === + req.params.id){
+                let autoAEliminar = getAutos.indexOf(auto);
+                getAutos.splice(autoAEliminar, 1)
+            }
+        })
+        writeJsonAutos(getAutos);
+        res.redirect('/admin/autos')
     },
 }

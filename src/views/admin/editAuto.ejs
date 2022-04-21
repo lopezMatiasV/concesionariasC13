@@ -6,7 +6,7 @@
     <main class="container">
         <h3 class="text-center">Editar Auto</h3>
         <div class="container col-md-4">
-            <form class="row g-3" action="/admin/editarAuto/<%= auto.id %>?_method=PUT" method="POST">
+            <form class="row g-3" action="/admin/editarAuto/<%= auto.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <label for="marca" class="form-label">Marca</label>
                     <input type="text" class="form-control" id="marca" name="marca" value="<%= auto.marca %>">

@@ -34,7 +34,7 @@ module.exports = {
             nombre,
             direccion, 
             telefono,
-            imagen : 'default-image.png'
+            imagen : req.file ? req.file.filename : 'default-image.png'
         }
         /* Cargamos la nueva sucursal al array de sucursales */
         getSucursales.push(nuevaSucursal)
@@ -64,7 +64,7 @@ module.exports = {
                 sucursal.nombre = nombre, 
                 sucursal.direccion = direccion,
                 sucursal.telefono = telefono,
-                sucursal.imagen
+                sucursal.imagen = req.file ? req.file.filename : sucursal.imagen
             }
         })
         /* Sobreescribimos el JSON */
@@ -113,8 +113,8 @@ module.exports = {
             modelo,
             anio,
             color,
-            sucursal,
-            imagen : 'default-image.png'
+            sucursal : +sucursal,
+            imagen :  req.file ? req.file.filename : 'default-image.png'
         }
         getAutos.push(nuevoAuto)
         writeJsonAutos(getAutos)
@@ -141,7 +141,7 @@ module.exports = {
                 auto.anio = anio,
                 auto.color = color,
                 auto.sucursal = +sucursal,
-                auto.imagen
+                auto.imagen = req.file ? req.file.filename : auto.imagen 
             }
         })
         writeJsonAutos(getAutos)

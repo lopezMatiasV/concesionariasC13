@@ -3,7 +3,8 @@ let { getSucursales, getAutos } = require('../data/dataBase')
 module.exports = {
     sucursales: (req, res) => {
         res.render('sucursales', {
-            getSucursales
+            getSucursales,
+            session : req.session
         })
     },
     sucursal : (req, res) => {
@@ -13,7 +14,8 @@ module.exports = {
         let autos = getAutos.filter( autos => autos.sucursal == id_sucursal)
         res.render('sucursal',{
             sucursal,
-            autos
+            autos,
+            session : req.session
         })
     }
 }

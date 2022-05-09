@@ -17,7 +17,6 @@ let {sucursales,
 
 /* middewares */
 const upload = require('../middlewares/uploadFiles')
-const adminCheck = require('../middlewares/userCheck')
 
 /* Index del admin */
 router.get('/', index)
@@ -42,7 +41,7 @@ router.delete('/eliminarSucursal/:id', borrarSucursal)
 /*ADMINISTRACION DE AUTOS*/
 router.get('/autos', autos);
 router.get('/agregarAuto', formAgregarAuto);
-router.post('/agregarAuto', upload.single('image'), adminCheck, agregarAuto);
+router.post('/agregarAuto', upload.single('image'), agregarAuto);
 router.get('/editarAuto/:id', editFormAuto);
 router.put('/editarAuto/:id', upload.single('image'), editAuto);
 router.delete('/eliminarAuto/:id', borrarAuto)

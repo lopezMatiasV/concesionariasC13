@@ -9,13 +9,13 @@
             <form class="row g-3" action="/users/login" method="POST">
                 <div class="col-12">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
-                    <small class="text-danger"></small>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= (locals.old && old.email) ? old.email : "" %>" >
+                    <small class="text-danger"><%= (locals.errors && errors.email) ? errors.email.msg : "" %> </small>
                 </div>
                 <div class="col-12">
                     <label for="pass" class="form-label">pass</label>
                     <input type="password" class="form-control" id="pass" name="pass">
-                    <small class="text-danger"></small>
+                    <small class="text-danger"><%= (locals.errors && errors.pass) ? errors.pass.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="recordar">Recordarme</label>

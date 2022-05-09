@@ -5,6 +5,7 @@ module.exports = {
         res.render('home', {
             titulo: "Conocé nuestras sucursales",
             sucursales: getSucursales,
+            session : req.session
         })
     },
     search: (req, res) => {
@@ -12,7 +13,8 @@ module.exports = {
         let autos = getAutos.filter( auto => auto.marca == busqueda || auto.modelo == busqueda)
         res.render('search',{
             autos,
-            busqueda
+            busqueda,
+            session : req.session
         })
     }
 }

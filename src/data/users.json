@@ -4,13 +4,25 @@
     "nombre": "Matias",
     "apellido": "Lopez",
     "email": "matias@gmail.com",
-    "pass": "123123"
+    "pass": "123123",
+    "rol": "admin",
+    "avatar" : "default-image.png"
   },
   {
     "id": 2,
     "nombre": "tony",
     "apellido": "garay",
     "email": "tony@tony.com",
-    "pass": "123123"
+    "pass": "123123",
+    "rol": "user",
+    "avatar" : "default-image.png"
+  },
+  {
+    "id": 3,
+    "nombre": "robert",
+    "apellido": "gimenez",
+    "email": "email@email.com",
+    "pass": "123123",
+    "avatar" : "default-image.png"
   }
 ]

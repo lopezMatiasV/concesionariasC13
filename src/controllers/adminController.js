@@ -3,7 +3,9 @@ let { getAutos, getSucursales, writeJson, writeJsonAutos} = require('../data/dat
 module.exports = {
     /* Bienvenida del admin */
     index : (req, res) => {
-        res.render('admin/adminIndex')
+        res.render('admin/adminIndex', {
+            session : req.session
+        })
     },
 
     /* CRUD SUCURSALES */
@@ -11,12 +13,15 @@ module.exports = {
     /* Vista de la tabla de sucursales */
     sucursales: (req, res) => {
         res.render('admin/adminSucursales', {
-            sucursales : getSucursales
+            sucursales : getSucursales,
+            session : req.session
         })
     },
     /* Vista del formulario */
     formAgregarSucursal: (req, res) => {
-        res.render('admin/agregarSucursal')
+        res.render('admin/agregarSucursal',{
+            session : req.session
+        })
     },
     /* Se ejecuta la accion del guardado de la nueva sucursal */
     agregarSucursal: (req, res) => {
@@ -49,7 +54,8 @@ module.exports = {
         let sucursal = getSucursales.find(sucursal => sucursal.id == req.params.id)
         /* Enviamos la vista con la variable donde guardamos la sucursal buscada */
         res.render('admin/editarSucursal', {
-            sucursal
+            sucursal,
+            session : req.session
         })
     },
     /* Edita la sucursal que seleccionamos */
@@ -90,12 +96,14 @@ module.exports = {
 
     autos: (req, res) => {
         res.render('admin/adminAutos', {
-            getAutos
+            getAutos,
+            session : req.session
         })
     },
     formAgregarAuto: (req, res) => {
         res.render('admin/agregarAuto', {
-            getSucursales
+            getSucursales,
+            session : req.session
         })
     },
     agregarAuto: (req, res) => {
@@ -128,7 +136,8 @@ module.exports = {
         res.render('admin/editAuto', {
             auto,
             sucursal,
-            getSucursales
+            getSucursales,
+            session : req.session
         })
     },
     editAuto: (req, res) => {

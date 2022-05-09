@@ -1,7 +1,9 @@
 let express = require('express');
 let app = express();
 let path = require('path');
+let PORT = 3000;
 let methodOverride = require('method-override')
+let session = require('express-session')
 
 /* Enrutadores */
 let autosRouter = require('./routes/autos');
@@ -19,6 +21,12 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(session({
+    secret:"concesionarias",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {}
+}));
 
 /* Rutas */
 app.use('/', homeRouter);
@@ -32,4 +40,6 @@ app.use((req, res, next) => {
     res.status(404).render('not-found')
 })
 
-app.listen(3000, () => { console.log("Servidor levantado")})
+app.listen(PORT, () => {
+    console.log(`Servidor levantado en el puerto ${PORT}\nLink: http://localhost:3000/`)
+})

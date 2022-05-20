@@ -4,25 +4,19 @@
     "nombre": "Matias",
     "apellido": "Lopez",
     "email": "matias@gmail.com",
-    "pass": "123123",
+    "pass": "$2a$10$8qwzmSvxsTXkYm23tg2v0.hf/5nk8Ma3pFacLvP.wly9RRKDCd2ga",
     "rol": "admin",
-    "avatar" : "default-image.png"
+    "avatar": "default-image.png"
   },
   {
     "id": 2,
-    "nombre": "tony",
-    "apellido": "garay",
-    "email": "tony@tony.com",
-    "pass": "123123",
+    "apellido": "loa",
+    "email": "emma@gmail.com",
+    "pass": "$2a$10$8qwzmSvxsTXkYm23tg2v0.hf/5nk8Ma3pFacLvP.wly9RRKDCd2ga",
     "rol": "user",
-    "avatar" : "default-image.png"
-  },
-  {
-    "id": 3,
-    "nombre": "robert",
-    "apellido": "gimenez",
-    "email": "email@email.com",
-    "pass": "123123",
-    "avatar" : "default-image.png"
+    "avatar": "1652995354567_img_.png",
+    "nombre": "Emma",
+    "direccion": "Loanna",
+    "telefono": "123123"
   }
 ]

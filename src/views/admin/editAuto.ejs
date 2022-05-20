@@ -3,6 +3,7 @@
     <%- include('../partials/head.ejs')  %> 
 <body>
     <%- include('../partials/headerAdmin.ejs')  %> 
+    <script src="/javascript/imagePreview.js"></script>
     <main class="container">
         <h3 class="text-center">Editar Auto</h3>
         <div class="container col-md-4">
@@ -39,10 +40,12 @@
                 </div>
                 <div class="col-12">
                     <figure class="text-center">
-                        <img src="/images/<%= auto.imagen %>" alt="" width="200px" height="200px">
+                        <div id="imagePreview">
+                            <img src="/images/<%= auto.imagen %>" alt="" width="200px" height="200px">
+                        </div>
                     </figure>
                     <label for="inputFile" class="form-label">Imagen</label>
-                    <input type="file" class="form-control" name="image" id="inputFile">
+                    <input type="file" class="form-control" name="image" id="inputFile" onchange="fileValidation()"/>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">EDITAR</button>

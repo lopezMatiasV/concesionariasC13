@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
     <%- include('../partials/head.ejs')  %> 
-    <script src="/js/imagePreview.js"></script>
+    <script src="/javascript/imagePreview.js"></script>
 <body>
     <%- include('../partials/header.ejs')  %> 
     <main class="container">
-        <h3 class="text-center">Profile</h3>
+        <h3 class="text-center">Perfil <%= user.nombre %> </h3>
         <div class="container col-md-4">
-            <form class="row g-3" action="/users/editProfile/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form class="row g-3" action="/users/perfil/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="inputName" name="nombre" value="<%= (locals.old && old.nombre) ? old.nombre : user.nombre %>">
@@ -25,10 +25,12 @@
                 </div>
                 <div class="col-12">
                     <figure class="text-center">
-                        <img src="/images/avatars/<%= user.avatar %> " alt="" width="200px" height="200px">
+                        <div id="imagePreview">
+                            <img src="/images/avatars/<%= user.avatar %> " alt="" width="200px" height="200px">
+                        </div>
                     </figure>
                     <label for="inputFile" class="form-label">Imagen</label>
-                    <input type="file" class="form-control" name="avatar" id="inputFile">
+                    <input type="file" class="form-control" name="avatar" id="inputFile" onchange="fileValidation()">
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Modificar</button>

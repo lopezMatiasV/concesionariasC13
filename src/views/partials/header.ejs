@@ -20,7 +20,7 @@
           <ul style="display: inline;">
             <% if (typeof session.user != "undefined") { %>
               <h5><%= session.user.nombre %> </h5>
-                <a href=""><img src="/images/avatars/<%= session.user.avatar %>" alt="" width="50px" height="50px"
+                <a href="/users/perfil"><img src="/images/avatars/<%= session.user.avatar %>" alt="" width="50px" height="50px"
             class="rounded-circle avatar"></a>
               <li>
                 <a href="/users/logout">Cerrar sesión</a>

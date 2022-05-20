@@ -1,4 +1,5 @@
 let { getAutos, getSucursales, writeJson, writeJsonAutos} = require('../data/dataBase');
+const { validationResult } = require('express-validator')
 
 module.exports = {
     /* Bienvenida del admin */
@@ -25,7 +26,9 @@ module.exports = {
     },
     /* Se ejecuta la accion del guardado de la nueva sucursal */
     agregarSucursal: (req, res) => {
-        let lastId = 0;
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            let lastId = 0;
         getSucursales.forEach( sucursal => {
             if(sucursal.id > lastId){
                 lastId = sucursal.id
@@ -47,6 +50,14 @@ module.exports = {
         writeJson(getSucursales)
         /* Redireccionamos a la vista de todas las sucursales */
         res.redirect('/admin/sucursales')
+        }else{
+            res.render('admin/agregarSucursal',{
+                session : req.session,
+                old : req.body,
+                errors : errors.mapped()
+            })
+        }
+        
     },
     /* Envia el formulario de edicion de sucursal */
     editForm: (req, res) => {
@@ -60,7 +71,9 @@ module.exports = {
     },
     /* Edita la sucursal que seleccionamos */
     editarSucursal: (req, res) => {
-        /* Capturamos lo que viene x body */
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            /* Capturamos lo que viene x body */
         let { nombre, direccion, telefono } = req.body
         /* Buscamos en nuestro array la sucursal que coincida con el id que enviamos */
         getSucursales.forEach( sucursal => {
@@ -77,6 +90,16 @@ module.exports = {
         writeJson(getSucursales);
         /* Redireccionamos */
         res.redirect('/admin/sucursales')
+        }else{
+            let sucursal = getSucursales.find(sucursal => sucursal.id === +req.params.id) 
+            res.render('admin/editarSucursal', {
+                sucursal,
+                session: req.session,
+                errors: errors.mapped(),
+                old: req.body
+            })
+        }
+        
     },
     /* Eliminamos la sucursal seleccionada */
     borrarSucursal: (req, res) => {
@@ -107,7 +130,9 @@ module.exports = {
         })
     },
     agregarAuto: (req, res) => {
-        let lastId = 0;
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            let lastId = 0;
         getAutos.forEach( auto => {
             if(auto.id > lastId){
                 lastId = auto.id
@@ -128,6 +153,15 @@ module.exports = {
         writeJsonAutos(getAutos)
         //res.redirect('/admin/autos')
         res.redirect(`/admin/autos#${nuevoAuto.id}`)
+        }else{
+            res.render('admin/agregarAuto', {
+                getSucursales,
+                session : req.session,
+                old : req.body,
+                errors : errors.mapped()
+            })
+        }
+        
     },
     editFormAuto: (req, res) => {
         let auto = getAutos.find( auto => auto.id === +req.params.id)
@@ -141,7 +175,9 @@ module.exports = {
         })
     },
     editAuto: (req, res) => {
-        let { marca, modelo, anio, color, sucursal } = req.body
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            let { marca, modelo, anio, color, sucursal } = req.body
         let auto = getAutos.find( auto => auto.id === +req.params.id)
         getAutos.forEach( auto => {
             if(auto.id === +req.params.id){
@@ -155,6 +191,20 @@ module.exports = {
         })
         writeJsonAutos(getAutos)
         res.redirect(`/admin/autos#${auto.id}`)
+        }else{
+            let auto = getAutos.find( auto => auto.id === +req.params.id)
+            let sucursal = getSucursales.find(sucursal => sucursal.id === auto.sucursal)
+        
+            res.render('admin/editAuto', {
+                auto,
+                sucursal,
+                getSucursales,
+                session : req.session,
+                old : req.body,
+                errors : errors.mapped()
+            })
+        }
+        
     },
     borrarAuto: (req, res) => {
         getAutos.forEach(auto => {

@@ -3,32 +3,35 @@
     <%- include('../partials/head.ejs')  %> 
 <body>
     <%- include('../partials/headerAdmin.ejs')  %> 
+    <script src="/javascript/imagePreview.js"></script>
     <main class="container">
         <h3 class="text-center">Editar sucursal <%= sucursal.nombre %> </h3>
         <div class="container col-md-4">
             <form class="row g-3" action="/admin/editarSucursal/<%= sucursal.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" name="nombre" value="<%= sucursal.nombre %>">
-                    <small class="text-danger"></small>
+                    <input type="text" class="form-control" id="inputName" name="nombre" value="<%= (locals.old && old.nombre) ? old.nombre : sucursal.nombre %>">
+                    <small class="text-danger"><%= (locals.errors  && errors.nombre) ? errors.nombre.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="inputAddress" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="inputAddress" name="direccion" value="<%= sucursal.direccion %>">
-                    <small class="text-danger"></small>
+                    <input type="text" class="form-control" id="inputAddress" name="direccion" value="<%= (locals.old && old.direccion) ? old.direccion : sucursal.direccion %>">
+                    <small class="text-danger"><%= (locals.errors  && errors.direccion) ? errors.direccion.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="inputTel" class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" id="inputTel" name="telefono" value="<%= sucursal.telefono %>">
-                    <small class="text-danger"></small>
+                    <input type="tel" class="form-control" id="inputTel" name="telefono" value="<%= (locals.old && old.telefono) ? old.telefono : sucursal.telefono %>">
+                    <small class="text-danger"><%= (locals.errors  && errors.telefono) ? errors.telefono.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <figure class="text-center">
-                        <img src="/images/<%= sucursal.imagen %>" alt="" width="200px" height="200px">
+                        <div id="imagePreview">
+                            <img src="/images/<%= sucursal.imagen %>" alt="" width="200px" height="200px">
+                        </div>
                     </figure>
                     
                     <label for="inputFile" class="form-label">Imagen</label>
-                    <input type="file" class="form-control" name="image" id="inputFile">
+                    <input type="file" class="form-control" name="image" id="inputFile" onchange="fileValidation()">
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-success">EDITAR</button>

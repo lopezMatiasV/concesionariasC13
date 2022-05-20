@@ -2,7 +2,8 @@
 <html lang="es">
     <%- include('../partials/head.ejs')  %> 
 <body>
-    <%- include('../partials/headerAdmin.ejs')  %> 
+    <%- include('../partials/headerAdmin.ejs')  %>
+    <script src="/javascript/imagePreview.js"></script>
     <main class="container">
         <h3 class="text-center">Agregar Auto</h3>
         <div class="container col-md-4">
@@ -36,10 +37,11 @@
                     </select>
                     <small class="text-danger"></small>
                 </div>
+                <div id="imagePreview"></div>
                 <!-- Imagen-->
                 <div class="col-12">
                     <label for="inputFile" class="form-label">Imagen</label>
-                    <input type="file" class="form-control" id="inputFile" name="image"/>
+                    <input type="file" class="form-control" id="inputFile" name="image" onchange="fileValidation()"/>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">AGREGAR</button>

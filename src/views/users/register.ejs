@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre">
-                    <small class="text-danger"></small>
+                    <small class="text-danger"><%= (locals.errors && errors.nombre) ? errors.nombre.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="apellido" class="form-label">Apellido</label>
@@ -20,7 +20,7 @@
                 <div class="col-12">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email">
-                    <small class="text-danger"></small>
+                    <small class="text-danger"><%= (locals.errors && errors.email) ? errors.email.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="pass" class="form-label">pass</label>

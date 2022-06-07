@@ -5,10 +5,14 @@
     <main class="container-fluid">
       <%- include('../partials/headerAdmin.ejs') %>
       <!--Administrador de productos-->
+      <form class="d-flex" action="/admin/sucursales/search" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Busca tu marca favorita" name="search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
       <br>
       <section class="row">
         <article class="col-12">
-          <a href="/admin/agregarSucursal"><button type="button" class="btn btn-success">Agregar</button></a>
+          <a href="/admin/sucursales/agregarSucursal"><button type="button" class="btn btn-success">Agregar</button></a>
         </article>
         <article class="col-12" >
         <table class="table">
@@ -27,8 +31,8 @@
                 <td><%= sucursal.id%> </td>
                 <td><%= sucursal.nombre%> </td>
                 <td><a href="/sucursales/<%= sucursal.id%> "> <ion-icon name="eye-outline"></ion-icon></a></td>
-                <td><a href="/admin/editarSucursal/<%= sucursal.id%> "> <ion-icon name="pencil-outline"></ion-icon></a></td>
-                <form action="/admin/eliminarSucursal/<%= sucursal.id %>?_method=DELETE" method="POST">
+                <td><a href="/admin/sucursales/editarSucursal/<%= sucursal.id%> "> <ion-icon name="pencil-outline"></ion-icon></a></td>
+                <form action="/admin/sucursales/eliminarSucursal/<%= sucursal.id %>?_method=DELETE" method="POST">
                   <td><button type="submit" style="border: none; background: none;"><ion-icon name="trash-outline"></ion-icon></td>
                 </form>
               </tr>

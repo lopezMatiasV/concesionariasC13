@@ -25,11 +25,7 @@ module.exports = [
                 let userEncontrado = getUsers.find(user => user.email === req.body.email)
                 
                 return bcrypt.compareSync(value, userEncontrado.pass)
-                /* if(userEncontrado.pass === value) {
-                    return true
-                }else{
-                    return false
-                } */
+                
             })
         .withMessage('contraseña invalida')
 

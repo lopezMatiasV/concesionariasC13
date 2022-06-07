@@ -1,7 +1,6 @@
 const {getUsers, writeJsonUsers} = require('../data/dataBase')
 const {validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs')
-const { reverse } = require('../validations/registerValidator')
 
 module.exports = {
     login: (req, res) => {

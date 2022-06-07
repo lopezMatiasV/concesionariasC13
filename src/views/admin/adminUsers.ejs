@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <%- include('../partials/head.ejs') %>    
+<body>
+    <main class="container-fluid">
+      <%- include('../partials/headerAdmin.ejs') %>
+      <br>
+      <form class="d-flex" action="/admin/users/search" method="GET">
+        <select name="search" id="">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+<!--         <input class="form-control me-2" type="search" placeholder="Ingrese rol o nombre de usuario" name="search" aria-label="Search">
+ -->        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <section class="row">
+        <article class="col-12" >
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(({id, nombre, apellido, email, rol}) => { %>
+              <tr id="<%= id %>">
+                <td><%= id %> </td>
+                <td><%= nombre %> </td>
+                <td><%= apellido %></td>
+                <td><%= email %> </td>
+                <form action="/admin/users/<%= id %>?_method=PUT" method="POST">
+                  <td>
+                    <select  name="rol">
+                      <option selected hidden value="<%= rol %>"><%= rol %></option>
+                      <option value="user">user</option>
+                      <option value="admin">admin</option>
+                    </select>
+                    <button type="submit" style="border: none; background: none;"><ion-icon name="pencil-outline"></ion-icon></td>
+                </form>
+                <form action="/admin/users/<%= id %>?_method=DELETE" method="POST">
+                  <td><button type="submit" style="border: none; background: none;"><ion-icon name="trash-outline"></ion-icon></td>
+                </form>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table> 
+        </article>       
+      </section>
+      <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    </main>
+  </body>
+</html>

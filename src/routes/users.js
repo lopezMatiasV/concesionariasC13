@@ -4,14 +4,16 @@ let { login, register, processRegister, processLogin, logout, profile, editProfi
 let loginValidator = require('../validations/loginValidator')
 let registerValidator = require('../validations/registerValidator')
 let upload = require('../middlewares/uploadAvatar')
+let { inSession, offSession } = require('../middlewares/usersMiddlewares')
 
-router.get('/login', login);
-router.post('/login', loginValidator, processLogin)
-router.get('/register', register)
-router.post('/register', registerValidator, processRegister)
-router.get('/logout', logout)
-router.get('/perfil', profile)
-router.put('/perfil/:id', upload.single('avatar'), editProfile)
+router
+    .get('/login', inSession, login)
+    .post('/login', loginValidator, processLogin)
+    .get('/register', inSession, register)
+    .post('/register', registerValidator, processRegister)
+    .get('/logout', logout)
+    .get('/perfil', offSession, profile)
+    .put('/perfil/:id', upload.single('avatar'), editProfile);
 
 
 module.exports = router;

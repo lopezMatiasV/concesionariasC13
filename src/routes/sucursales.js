@@ -5,6 +5,6 @@ let controller = require('../controllers/sucursalesController')
 
 /* GET Sucursal */
 router.get('/', controller.sucursales)
-router.get('/:IDsucursal', controller.sucursal)
+router.get('/:id', controller.sucursal)
 
 module.exports = router;

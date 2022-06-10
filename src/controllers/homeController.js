@@ -1,21 +1,37 @@
-let { getSucursales, getAutos } = require('../data/dataBase')
+const { Auto, Sucursal } = require('../database/models')
+const {Op} = require('sequelize')
 
 module.exports = {
     index: (req, res) => {
-        res.render('home', {
-            titulo: "Conocé nuestras sucursales",
-            sucursales: getSucursales,
-            session : req.session
+        Sucursal.findAll()
+        .then(sucursales => {
+            res.render('home', {
+                titulo: "Conocé nuestras sucursales",
+                sucursales,
+                session : req.session
+            })
         })
+        .catch(errors => res.send(errors))
     },
     search: (req, res) => {
         let busqueda = req.query.search.toLowerCase()
-        let autos = getAutos.filter( auto => auto.marca == busqueda || auto.modelo == busqueda)
-        res.render('search',{
-            autos,
-            busqueda,
-            session : req.session
+        Auto.findAll({
+            where: {
+                [Op.or]: [
+                    { marca: {[Op.substring]: busqueda}},
+                    { modelo: {[Op.substring]: busqueda}},
+                    { color: {[Op.substring]: busqueda}}
+                ]
+            },
         })
+        .then(autos => {
+            res.render('search',{
+                autos,
+                busqueda,
+                session : req.session
+            })
+        })
+        .catch(errors => res.send(errors))
     }
 }
 

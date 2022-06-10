@@ -1,21 +1,27 @@
-let { getAutos, getSucursales } = require('../data/dataBase')
+const { Auto } = require('../database/models')
 
-let autosController = {
+module.exports = {
     listar: (req, res) => {
-        res.render('autos', {
-            autos : getAutos,
-            session : req.session
-        })
+        Auto.findAll()
+            .then(autos => {
+                res.render('autos', {
+                    autos,
+                    session : req.session
+                })
+            })
+            .catch(errors => res.send(errors))
     },   
     auto : (req, res) => {
-        let auto = getAutos.find( auto => auto.id == req.params.id)
-        let sucursal = getSucursales.find( sucursal => sucursal.id == auto.sucursal)
-        res.render('autoDetail', {
-            auto,
-            sucursal,
-            session : req.session
+        Auto.findByPk(req.params.id,{
+            include:['sucursal']
         })
+        .then(auto => {
+            res.render('autoDetail', {
+                auto,
+                sucursal : auto.sucursal,
+                session : req.session
+            })
+        })
+        .catch(errors => res.send(errors))
     }
 }
-
-module.exports = autosController

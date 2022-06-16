@@ -106,5 +106,16 @@ module.exports = {
         writeJsonUsers(getUsers)
         req.session.user = user
         res.redirect('/users/perfil')
+    },
+    deleteUser : (req, res) => {
+        getUsers.forEach(user => {
+            if(user.id === +req.params.id){
+                let userABorrar = getUsers.indexOf(user)
+                getUsers.splice(userABorrar, 1)
+            }
+        })
+        writeJsonUsers(getUsers)
+        req.session.destroy()
+        res.redirect('/')
     }
 }

@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let { login, register, processRegister, processLogin, logout, profile, editProfile } = require('../controllers/usersControler')
+let { login, register, processRegister, processLogin, logout, profile, editProfile, deleteUser } = require('../controllers/usersControler')
 let loginValidator = require('../validations/loginValidator')
 let registerValidator = require('../validations/registerValidator')
 let upload = require('../middlewares/uploadAvatar')
@@ -13,7 +13,7 @@ router
     .post('/register', registerValidator, processRegister)
     .get('/logout', logout)
     .get('/perfil', offSession, profile)
-    .put('/perfil/:id', upload.single('avatar'), editProfile);
-
+    .put('/perfil/:id', upload.single('avatar'), editProfile)
+    .delete('/deleteUser/:id', deleteUser)
 
 module.exports = router;

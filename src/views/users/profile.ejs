@@ -36,9 +36,11 @@
                     <button type="submit" class="btn btn-primary">Modificar</button>
                 </div>
             </form>
+            <form action="/users/deleteUser/<%= user.id%>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Eliminarme</button>
+            </form>
         </div>
     </main>
-   
     <%- include('../partials/scripts.ejs')  %> 
 </body>
 </html>

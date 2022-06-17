@@ -9,7 +9,7 @@ module.exports = {
                 session : req.session
             })
         })
-        .catch(errors => res.send(errors))
+        .catch(errors => console.log(errors))
     },
     sucursal : (req, res) => {
         Sucursal.findByPk(req.params.id, {
@@ -22,6 +22,6 @@ module.exports = {
                 session : req.session
             })
         })
-        .catch(errors => res.send(errors))
+        .catch(errors => console.log(errors))
     }
 }

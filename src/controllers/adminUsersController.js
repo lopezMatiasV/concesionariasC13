@@ -1,39 +1,50 @@
-const {getUsers, writeJsonUsers} = require('../data/dataBase')
-
+const { Usuario, Sequelize } = require('../database/models')
 module.exports = {
     users :(req, res) => {
-        res.render('admin/adminUsers',{
-            users : getUsers,
-            session : req.session
+        Usuario.findAll()
+        .then( users => {
+            res.render('admin/adminUsers', {
+                users,
+                session: req.session
+            })
         })
+        .catch(error => console.log(error))
     },
     userEdit : (req, res) =>{
-        let user = getUsers.find(user => user.id === +req.params.id)
-        getUsers.forEach(user => {
-            if(user.id === +req.params.id){
-                user.rol = req.body.rol
-            }
-        })
-        writeJsonUsers(getUsers)
-        res.redirect(`/admin/users#${user.id}`)
+        let { rol } = req.body
+            Usuario.update({
+                rol
+            },
+            { where: { id : req.params.id}})
+            .then(() => {
+                res.redirect('/admin/users')
+            })
+            .catch(error => console.log(error))
     },
     userDelete : (req, res) => {
-        getUsers.forEach(user => {
-            if(user.id === + req.params.id){
-                let userAEliminar = getUsers.indexOf(user);
-                getUsers.splice(userAEliminar, 1)
+        Usuario.destroy({
+            where: {
+                id: req.params.id
             }
         })
-        writeJsonUsers(getUsers);
-        res.redirect('/admin/users')
+        .then((user) => {
+            return res.redirect('/admin/users')
+        })
+        .catch(error => console.log(error))
     },
     userSearch : (req, res) => {
         let busqueda = req.query.search.toLowerCase()
-        let users = getUsers.filter( user => user.rol == busqueda)
-        res.render('admin/adminUsers',{
-            users,
-            busqueda,
-            session : req.session
+        Usuario.findAll({
+            where: {
+                rol: {[Sequelize.Op.substring]: busqueda}
+            }
+        })
+        .then(users => {
+            res.render('admin/adminUsers',{
+                users,
+                busqueda,
+                session: req.session
+            })
         })
     }
 }

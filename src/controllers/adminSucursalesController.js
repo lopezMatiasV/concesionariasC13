@@ -11,7 +11,7 @@ module.exports = {
                 session : req.session
             })
         })
-        .catch(errors => res.send(errors))
+        .catch(errors => console.log(errors))
     },
     formAgregarSucursal: (req, res) => {
         res.render('admin/agregarSucursal',{
@@ -28,7 +28,7 @@ module.exports = {
             .then(sucursal => {
                 res.redirect('/admin/sucursales')
             })
-            .catch(errors => res.send(errors))
+            .catch(errors => console.log(errors))
         }else{
             res.render('admin/agregarSucursal',{
                 session : req.session,
@@ -46,7 +46,7 @@ module.exports = {
                 session : req.session
             })
         })
-        .catch(errors => res.send(errors))
+        .catch(errors => console.log(errors))
     },
     editarSucursal: (req, res) => {
         let errors = validationResult(req)
@@ -61,7 +61,7 @@ module.exports = {
             .then(() => {
                 res.redirect('/admin/sucursales')
             })
-            .catch(errors => res.send(errors))
+            .catch(errors => console.log(errors))
         }else{
             Sucursal.findByPk(req.params.id)
                 .then(sucursal => {
@@ -72,7 +72,7 @@ module.exports = {
                         old: req.body
                     })
                 })
-                .catch(errors => res.send(errors))
+                .catch(errors => console.log(errors))
         }
         
     },
@@ -83,7 +83,7 @@ module.exports = {
         .then(() => {
             res.redirect('/admin/sucursales')
         })
-        .catch(errors => res.send(errors))
+        .catch(errors => console.log(errors))
     },
     buscarSucursal : (req, res) => {
         let busqueda = req.query.search.toLowerCase()
@@ -99,6 +99,6 @@ module.exports = {
                 session : req.session
             })
         })
-        .catch(errors => res.send(errors))
+        .catch(errors => console.log(errors))
     }
 }

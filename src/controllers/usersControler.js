@@ -1,4 +1,4 @@
-const {getUsers, writeJsonUsers} = require('../data/dataBase')
+const { Usuario } = require('../database/models')
 const {validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs')
 
@@ -11,20 +11,24 @@ module.exports = {
     processLogin : (req, res) => {
         let errors = validationResult(req)
         if (errors.isEmpty()){
-            let user = getUsers.find(user => user.email === req.body.email)
-            req.session.user = {
-            id : user.id,
-            nombre : user.nombre,
-            apellido : user.apellido,
-            avatar : user.avatar,
-            rol : user.rol
-        }
-        if(req.body.recordar){
-            res.cookie('concesionarias', req.session.user, {maxAge : 1000*60*10} )
-        }
-        res.redirect('/')
+            Usuario.findOne({
+                where : { email : req.body.email}
+            })
+            .then(usuario => {
+                req.session.user = {
+                    id : usuario.id,
+                    nombre : usuario.nombre,
+                    apellido : usuario.apellido,
+                    avatar : usuario.avatar,
+                    rol : usuario.rol
+                }
+                if(req.body.recordar){
+                    res.cookie('concesionarias', req.session.user, {maxAge : 1000*60*10} )
+                }
+                res.redirect('/')
+            })
+            .catch(errors => console.log(errors))
         }else{
-            //res.send(errors)
             res.render('users/login', {
                 errors : errors.mapped(),
                 old : req.body,
@@ -33,7 +37,6 @@ module.exports = {
         }
     },
     register: (req, res) => {
-        //res.send(req.session.user)
         res.render('users/register',{
             session : req.session
         })
@@ -41,28 +44,27 @@ module.exports = {
     processRegister: (req, res) => {
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            let lastId = 0;
-        getUsers.forEach( user => {
-            if(user.id > lastId){
-                lastId = user.id
-            }
-        });
-        let { nombre, apellido, email, pass } = req.body;
-
-        let newUser = {
-            id : lastId + 1,
-            nombre,
-            apellido,
-            email,
-            pass : bcrypt.hashSync(pass, 10),
-            rol : 'user',
-            avatar : "default-image.png"
-        }
-        getUsers.push(newUser);
-        writeJsonUsers(getUsers);
-        res.redirect('/users/login')
+            let { nombre, apellido, email, pass } = req.body;
+            Usuario.create({
+                nombre,
+                apellido,
+                email,
+                pass : bcrypt.hashSync(pass, 10),
+                rol : 'user',
+                avatar : "default-image.png"
+            })
+            .then(usuario => {
+                req.session.user = {
+                    id : usuario.id,
+                    nombre : usuario.nombre,
+                    apellido : usuario.apellido,
+                    avatar : usuario.avatar,
+                    rol : usuario.rol
+                }
+                res.redirect('/users/login')
+            })
+            .catch(errors => console.log(errors))
         }else{
-            //res.send(errors)
             res.render('users/register', {
                 errors : errors.mapped(),
                 old : req.body,
@@ -76,46 +78,40 @@ module.exports = {
         res.redirect('/')
     },
     profile : (req, res) => {
-        let id = +req.session.user.id;
-        let user = getUsers.find(user => user.id === id)
-        res.render('users/profile', {
-            user,
-            session : req.session
+        Usuario.findByPk(req.session.user.id)
+        .then(user => {
+            res.render('users/profile', {
+                user,
+                session : req.session
+            })
         })
+        .catch(errors => console.log(errors))
     },
     editProfile : (req, res) => {
-        let id = +req.params.id;
-        let user = getUsers.find(user => user.id === id)
-        let { nombre, direccion, telefono } = req.body
-        /* user.id = user.id
-        user.nombre = nombre
-        user.direccion = direccion
-        user.telefono = telefono
-        user.avatar = req.file ? req.file.filename : user.avatar
- */
-        getUsers.forEach(user => {
-            if(user.id === id){
-                user.id = user.id
-                user.nombre = nombre
-                user.direccion = direccion
-                user.telefono = telefono
-                user.avatar = req.file ? req.file.filename : user.avatar
-            }
+        Usuario.update({
+            ...req.body,
+            avatar: req.file ? req.file.filename : req.session.user.avatar
+        },{
+            where : { id : req.session.user.id}
         })
-
-        writeJsonUsers(getUsers)
-        req.session.user = user
-        res.redirect('/users/perfil')
+        .then(() => {
+            res.redirect('/')
+        })
+        .catch(errors => console.log(errors))
     },
     deleteUser : (req, res) => {
-        getUsers.forEach(user => {
-            if(user.id === +req.params.id){
-                let userABorrar = getUsers.indexOf(user)
-                getUsers.splice(userABorrar, 1)
+        req.session.destroy()
+        if (req.cookies.concesionarias){
+            res.cookie('concesionarias','',{maxAge:-1});
+        }
+        Usuario.destroy({
+            where:{
+                id : req.params.id
             }
         })
-        writeJsonUsers(getUsers)
-        req.session.destroy()
-        res.redirect('/')
-    }
+        .then(() => {
+            res.redirect('/') 
+        })
+        .catch(errors => console.log(errors))
+    },
 }

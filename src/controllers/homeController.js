@@ -11,8 +11,7 @@ module.exports = {
                 session : req.session
             })
         })
-        .catch(errors => res.send(errors))
-    },
+        .catch(errors => console.log(errors))    },
     search: (req, res) => {
         let busqueda = req.query.search.toLowerCase()
         Auto.findAll({
@@ -31,7 +30,6 @@ module.exports = {
                 session : req.session
             })
         })
-        .catch(errors => res.send(errors))
-    }
+        .catch(errors => console.log(errors))    }
 }
 

@@ -15,14 +15,14 @@
       </ul>
       <div class="user col-1">
         <ul style="display: inline;">
-          <% if (typeof session.user != "undefined") { %>
-            <h5><%= session.user.nombre %> </h5>
-              <a href="/users/perfil"><img src="/images/avatars/<%= session.user.avatar %>" alt="" width="50px" height="50px"
+          <% if (typeof locals.user != "undefined") { %>
+            <h5><%= locals.user.nombre %> </h5>
+              <a href="/users/perfil"><img src="/images/avatars/<%= locals.user.avatar %>" alt="" width="50px" height="50px"
           class="rounded-circle avatar"></a>
             <li>
               <a href="/users/logout">Cerrar sesión</a>
             </li>
-                <% if (session.user.rol === "admin") { %>
+                <% if (locals.user.rol === "admin") { %>
                   <li>
                     <a href="/admin/sucursales">IR AL ADMIN</a>
                   </li>    

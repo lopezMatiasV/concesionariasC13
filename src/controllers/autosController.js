@@ -6,7 +6,7 @@ module.exports = {
             .then(autos => {
                 res.render('autos', {
                     autos,
-                    session : req.session
+                    //session : req.session
                 })
             })
             .catch(errors => console.log(errors))
@@ -19,7 +19,7 @@ module.exports = {
             res.render('autoDetail', {
                 auto,
                 sucursal : auto.sucursal,
-                session : req.session
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors))

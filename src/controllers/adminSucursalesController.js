@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator')
-const { Auto, Sucursal} = require('../database/models')
+const { Sucursal} = require('../database/models')
 const { Op } = require('sequelize')
 
 module.exports = {
@@ -8,14 +8,14 @@ module.exports = {
         .then(sucursales => {
             res.render('admin/adminSucursales', {
                 sucursales,
-                session : req.session
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors))
     },
     formAgregarSucursal: (req, res) => {
         res.render('admin/agregarSucursal',{
-            session : req.session
+            //session : req.session
         })
     },
     agregarSucursal: (req, res) => {
@@ -25,13 +25,13 @@ module.exports = {
                 ...req.body,
                 imagen : req.file ? req.file.filename : 'default-image.png'
             })
-            .then(sucursal => {
+            .then(() => {
                 res.redirect('/admin/sucursales')
             })
             .catch(errors => console.log(errors))
         }else{
             res.render('admin/agregarSucursal',{
-                session : req.session,
+                //session : req.session,
                 old : req.body,
                 errors : errors.mapped()
             })
@@ -43,7 +43,7 @@ module.exports = {
         .then(sucursal => {
             res.render('admin/editarSucursal', {
                 sucursal,
-                session : req.session
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors))
@@ -67,14 +67,13 @@ module.exports = {
                 .then(sucursal => {
                     res.render('admin/editarSucursal', {
                         sucursal,
-                        session : req.session,
+                        //session : req.session,
                         errors: errors.mapped(),
                         old: req.body
                     })
                 })
                 .catch(errors => console.log(errors))
         }
-        
     },
     borrarSucursal: (req, res) => {
         Sucursal.destroy({
@@ -96,7 +95,7 @@ module.exports = {
             res.render('admin/adminSucursales',{
                 sucursales,
                 busqueda,
-                session : req.session
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors))

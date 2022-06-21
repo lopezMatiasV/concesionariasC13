@@ -14,7 +14,7 @@ let usersRouter = require('./routes/users')
 let adminSucursalesRouter = require('./routes/adminSucursales');
 let adminAutosRouter = require('./routes/adminAutos')
 let adminUsersRouter = require('./routes/adminUsers')
-let { cookieCheck, adminCheck } = require('./middlewares/usersMiddlewares')
+let { cookieCheck, adminCheck, localsCheck } = require('./middlewares/usersMiddlewares')
 
 /* Vistas */
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +33,8 @@ app.use(session({
     cookie: {}
 }));
 app.use(cookieCheck)
+app.use(localsCheck)
+
 
 /* Rutas */
 app.use('/', homeRouter);

@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 module.exports = {
     login: (req, res) => {
         res.render('users/login',{
-            session : req.session
+            //session : req.session
         })
     },
     processLogin : (req, res) => {
@@ -25,6 +25,7 @@ module.exports = {
                 if(req.body.recordar){
                     res.cookie('concesionarias', req.session.user, {maxAge : 1000*60*10} )
                 }
+                res.locals.user = req.session.user;
                 res.redirect('/')
             })
             .catch(errors => console.log(errors))
@@ -32,13 +33,13 @@ module.exports = {
             res.render('users/login', {
                 errors : errors.mapped(),
                 old : req.body,
-                session : req.session
+                //session : req.session
             })
         }
     },
     register: (req, res) => {
         res.render('users/register',{
-            session : req.session
+            //session : req.session
         })
     },
     processRegister: (req, res) => {
@@ -61,6 +62,7 @@ module.exports = {
                     avatar : usuario.avatar,
                     rol : usuario.rol
                 }
+                res.locals.user = req.session.user;
                 res.redirect('/users/login')
             })
             .catch(errors => console.log(errors))
@@ -68,7 +70,7 @@ module.exports = {
             res.render('users/register', {
                 errors : errors.mapped(),
                 old : req.body,
-                session : req.session
+                //session : req.session
             })
         }
         
@@ -82,7 +84,7 @@ module.exports = {
         .then(user => {
             res.render('users/profile', {
                 user,
-                session : req.session
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors))

@@ -17,11 +17,11 @@
         </li>
       </ul>
       <div class="user">
-        <% if (typeof session.user != "undefined") { %>
+        <% if (typeof locals.user != "undefined") { %>
             <i class="fas fa-user"></i><span class="session"></span>
             <div class="menu-user">
-              <h5><%= session.user.nombre %> </h5>
-              <a href="/users/profile"><img src="/images/avatars/<%= session.user.avatar %>" alt="" width="50px" height="50px"
+              <h5><%= locals.user.nombre %> </h5>
+              <a href="/users/profile"><img src="/images/avatars/<%= locals.user.avatar %>" alt="" width="50px" height="50px"
                 class="rounded-circle avatar"></a></a>
               <a href="/users/logout">Cerrar sesión</a>
             </div>

@@ -5,7 +5,7 @@ module.exports = {
         .then( users => {
             res.render('admin/adminUsers', {
                 users,
-                session: req.session
+                //session: req.session
             })
         })
         .catch(error => console.log(error))
@@ -27,7 +27,7 @@ module.exports = {
                 id: req.params.id
             }
         })
-        .then((user) => {
+        .then(() => {
             return res.redirect('/admin/users')
         })
         .catch(error => console.log(error))
@@ -43,7 +43,7 @@ module.exports = {
             res.render('admin/adminUsers',{
                 users,
                 busqueda,
-                session: req.session
+                //session: req.session
             })
         })
     }

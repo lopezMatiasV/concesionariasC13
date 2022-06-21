@@ -12,7 +12,7 @@ module.exports = {
         .then(autos => {
             res.render('admin/adminAutos', {
                 getAutos : autos,
-                session : req.session
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors));
@@ -21,8 +21,8 @@ module.exports = {
         Sucursal.findAll()
         .then(sucursales => {
             res.render('admin/agregarAuto', {
-            getSucursales : sucursales,
-            session : req.session
+                getSucursales : sucursales,
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors));
@@ -30,7 +30,7 @@ module.exports = {
     agregarAuto: (req, res) => {
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            let { marca, modelo, anio, color, sucursal } = req.body
+            //let { marca, modelo, anio, color, sucursal } = req.body
             Auto.create({
                 ...req.body,
                 imagen :  req.file ? req.file.filename : 'default-image.png'
@@ -44,7 +44,7 @@ module.exports = {
             .then(sucursales => {
                 res.render('admin/agregarAuto', {
                     getSucursales : sucursales,
-                    session : req.session,
+                    //session : req.session,
                     old : req.body,
                     errors : errors.mapped()
                 })
@@ -63,7 +63,7 @@ module.exports = {
                 auto,
                 sucursal : auto.sucursal,
                 getSucursales : sucursales,
-                session : req.session
+                //session : req.session
             })
         })
         .catch(errors => console.log(errors));
@@ -103,7 +103,7 @@ module.exports = {
                     auto,
                     sucursal : auto.sucursal,
                     getSucursales : sucursales,
-                    session : req.session,
+                    //session : req.session,
                     old : req.body,
                     errors : errors.mapped()
                 })
@@ -136,7 +136,7 @@ module.exports = {
         .then(autos => {
             res.render('admin/adminAutos',{
                 getAutos : autos,
-                session : req.session
+                //session : req.session
             })
         })
     }

@@ -1,11 +1,13 @@
 const { Usuario, Sequelize } = require('../database/models')
+let fs = require('fs')
+let path = require('path')
+
 module.exports = {
     users :(req, res) => {
         Usuario.findAll()
         .then( users => {
             res.render('admin/adminUsers', {
                 users,
-                //session: req.session
             })
         })
         .catch(error => console.log(error))
@@ -22,13 +24,21 @@ module.exports = {
             .catch(error => console.log(error))
     },
     userDelete : (req, res) => {
-        Usuario.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then(() => {
-            return res.redirect('/admin/users')
+        Usuario.findByPk(req.params.id)
+        .then(usuario => {
+            Usuario.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(() => {
+                if (fs.existsSync(path.join(__dirname, "../../public/images/avatars", usuario.avatar)) &&
+                    usuario.avatar !== "default-image.png"){
+                    fs.unlinkSync( path.join(__dirname, "../../public/images/avatars", usuario.avatar))
+                }
+            })
+            .catch(error => console.log(error))
+            res.redirect('/admin/users')
         })
         .catch(error => console.log(error))
     },
@@ -43,7 +53,6 @@ module.exports = {
             res.render('admin/adminUsers',{
                 users,
                 busqueda,
-                //session: req.session
             })
         })
     }

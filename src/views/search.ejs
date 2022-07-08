@@ -12,9 +12,9 @@
                 <h1>NO TENEMOS AUTOS DE LA MARCA SOLICITADA INTENTA CON OTRA</h1>
 
             <% } else { %>
-         
+
                 <% autos.forEach( auto => { %>
-                    <div class="card m-2 text-black bg-light" style="width: 16rem;">
+                    <div class="card m-2 text-black bg-light" style="width: 14rem;">
                         <img src="/images/<%- auto.imagen %>" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h5 class="card-title"><%= auto.marca.toUpperCase() %></h5>
@@ -28,7 +28,7 @@
             <% } %>
         </div>
     </main>
-   
+
     <%- include('./partials/scripts.ejs')  %> 
 </body>
 </html>

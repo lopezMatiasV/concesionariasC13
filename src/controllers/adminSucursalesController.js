@@ -1,6 +1,8 @@
 const { validationResult } = require('express-validator')
-const { Sucursal} = require('../database/models')
+const { Auto, Sucursal} = require('../database/models')
 const { Op } = require('sequelize')
+let fs = require('fs')
+let path = require('path')
 
 module.exports = {
     sucursales: (req, res) => {
@@ -8,15 +10,12 @@ module.exports = {
         .then(sucursales => {
             res.render('admin/adminSucursales', {
                 sucursales,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors))
     },
     formAgregarSucursal: (req, res) => {
-        res.render('admin/agregarSucursal',{
-            //session : req.session
-        })
+        res.render('admin/agregarSucursal')
     },
     agregarSucursal: (req, res) => {
         let errors = validationResult(req)
@@ -31,7 +30,6 @@ module.exports = {
             .catch(errors => console.log(errors))
         }else{
             res.render('admin/agregarSucursal',{
-                //session : req.session,
                 old : req.body,
                 errors : errors.mapped()
             })
@@ -43,7 +41,6 @@ module.exports = {
         .then(sucursal => {
             res.render('admin/editarSucursal', {
                 sucursal,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors))
@@ -51,15 +48,25 @@ module.exports = {
     editarSucursal: (req, res) => {
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            let sucursal = Sucursal.findByPk(req.params.id)
-            Sucursal.update({
-                ...req.body,
-                imagen : req.file ? req.file.filename : sucursal.imagen
-            }, {
-                where : {id : req.params.id}
-            })
-            .then(() => {
-                res.redirect('/admin/sucursales')
+            Sucursal.findByPk(req.params.id)
+            .then(sucursal => {
+                Sucursal.update({
+                    ...req.body,
+                    imagen : req.file ? req.file.filename : sucursal.imagen
+                }, {
+                    where : {id : req.params.id}
+                })
+                .then(() => {
+                    if (req.file) {
+                        if (fs.existsSync(path.join(__dirname, "../../public/images", sucursal.imagen))
+                            &&
+                            sucursal.imagen !== "default-image.png"){
+                            fs.unlinkSync( path.join(__dirname, "../../public/images", sucursal.imagen))
+                        }
+                    }
+                    res.redirect('/admin/sucursales')
+                })
+                .catch(errors => console.log(errors))
             })
             .catch(errors => console.log(errors))
         }else{
@@ -67,7 +74,6 @@ module.exports = {
                 .then(sucursal => {
                     res.render('admin/editarSucursal', {
                         sucursal,
-                        //session : req.session,
                         errors: errors.mapped(),
                         old: req.body
                     })
@@ -76,10 +82,36 @@ module.exports = {
         }
     },
     borrarSucursal: (req, res) => {
-        Sucursal.destroy({
-            where : {id : req.params.id}
+        Auto.findAll({
+            where : { sucursalId : req.params.id }
         })
-        .then(() => {
+        .then(autos => {
+            autos.forEach(auto => {
+                if (fs.existsSync(path.join(__dirname, "../../public/images", auto.imagen)) &&
+                    auto.imagen !== "default-image.png"){
+                    fs.unlinkSync( path.join(__dirname, "../../public/images", auto.imagen))
+                }
+            })
+            Auto.destroy({
+                where : { sucursalId : req.params.id}
+            })
+            .then(() => {
+                Sucursal.findByPk(req.params.id)
+                .then(sucursal => {
+                    Sucursal.destroy({
+                        where : {id : req.params.id}
+                    })
+                    .then(() => {
+                        if (fs.existsSync(path.join(__dirname, "../../public/images", sucursal.imagen)) &&
+                            sucursal.imagen !== "default-image.png"){
+                            fs.unlinkSync( path.join(__dirname, "../../public/images", sucursal.imagen))
+                        }
+                    })
+                    .catch(errors => console.log(errors))
+                })
+                .catch(errors => console.log(errors))
+            })
+            .catch(errors => console.log(errors))
             res.redirect('/admin/sucursales')
         })
         .catch(errors => console.log(errors))
@@ -95,7 +127,6 @@ module.exports = {
             res.render('admin/adminSucursales',{
                 sucursales,
                 busqueda,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors))

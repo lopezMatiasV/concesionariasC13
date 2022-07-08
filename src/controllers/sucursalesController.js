@@ -6,7 +6,6 @@ module.exports = {
         .then(sucursales => {
             res.render('sucursales', {
                 getSucursales : sucursales,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors))
@@ -19,7 +18,6 @@ module.exports = {
             res.render('sucursal',{
                 sucursal,
                 autos : sucursal.autos,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors))

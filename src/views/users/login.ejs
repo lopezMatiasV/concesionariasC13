@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-    <%- include('../partials/head.ejs')  %> 
+    <%- include('../partials/head.ejs')  %>
+    <script src="/javascript/loginValidator.js"></script>
 <body>
     <%- include('../partials/header.ejs')  %> 
     <main class="container">
         <h3 class="text-center">Login</h3>
         <div class="container col-md-4">
-            <form class="row g-3" action="/users/login" method="POST">
+            <form class="row g-3" id="login" action="/users/login" method="POST">
                 <div class="col-12">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" value="<%= (locals.old && old.email) ? old.email : "" %>" >
-                    <small class="text-danger"><%= (locals.errors && errors.email) ? errors.email.msg : "" %> </small>
+                    <small class="text-danger" id="errorEmail"><%= (locals.errors && errors.email) ? errors.email.msg : "" %> </small>
                 </div>
                 <div class="col-12">
                     <label for="pass" class="form-label">pass</label>
                     <input type="password" class="form-control" id="pass" name="pass">
-                    <small class="text-danger"><%= (locals.errors && errors.pass) ? errors.pass.msg : "" %></small>
+                    <small class="text-danger" id="errorPass"><%= (locals.errors && errors.pass) ? errors.pass.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="recordar">Recordarme</label>
@@ -30,7 +31,7 @@
             </form>
         </div>
     </main>
-   
+
     <%- include('../partials/scripts.ejs')  %> 
 </body>
 </html>

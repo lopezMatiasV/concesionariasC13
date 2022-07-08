@@ -12,7 +12,6 @@ module.exports = {
         .then(autos => {
             res.render('admin/adminAutos', {
                 getAutos : autos,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors));
@@ -22,7 +21,6 @@ module.exports = {
         .then(sucursales => {
             res.render('admin/agregarAuto', {
                 getSucursales : sucursales,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors));
@@ -30,7 +28,6 @@ module.exports = {
     agregarAuto: (req, res) => {
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            //let { marca, modelo, anio, color, sucursal } = req.body
             Auto.create({
                 ...req.body,
                 imagen :  req.file ? req.file.filename : 'default-image.png'
@@ -44,7 +41,6 @@ module.exports = {
             .then(sucursales => {
                 res.render('admin/agregarAuto', {
                     getSucursales : sucursales,
-                    //session : req.session,
                     old : req.body,
                     errors : errors.mapped()
                 })
@@ -63,7 +59,6 @@ module.exports = {
                 auto,
                 sucursal : auto.sucursal,
                 getSucursales : sucursales,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors));
@@ -71,25 +66,26 @@ module.exports = {
     editAuto: (req, res) => {
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            let auto = Auto.findByPk(req.params.id)
-            //let { marca, modelo, anio, color, sucursal } = req.body
-            Auto.update({
-                ...req.body,
-                sucursalId : +req.body.sucursal,
-                imagen: req.file ? req.file.filename : auto.imagen
-            },{
-                where : {id : req.params.id}
-            })
-            .then(() => {
-                /* elimina imagen existente */
-                if (req.file) {
-                    if (fs.existsSync(path.join(__dirname, "../../public/images", auto.imagen))
-                        &&
-                        auto.imagen !== "default-image.png"){
-                        fs.unlinkSync( path.join(__dirname, "../../public/images", auto.imagen))
+            Auto.findByPk(req.params.id)
+            .then(auto => {
+                Auto.update({
+                    ...req.body,
+                    sucursalId : +req.body.sucursalId,
+                    imagen: req.file ? req.file.filename : auto.imagen
+                },{
+                    where : {id : req.params.id}
+                })
+                .then(() => {
+                    if (req.file) {
+                        if (fs.existsSync(path.join(__dirname, "../../public/images", auto.imagen))
+                            &&
+                            auto.imagen !== "default-image.png"){
+                            fs.unlinkSync( path.join(__dirname, "../../public/images", auto.imagen))
+                        }
                     }
-                }
-                res.redirect(`/admin/autos#${auto.id}`)
+                    res.redirect(`/admin/autos#${auto.id}`)
+                })
+                .catch(errors => console.log(errors));
             })
             .catch(errors => console.log(errors));
         }else{
@@ -103,7 +99,6 @@ module.exports = {
                     auto,
                     sucursal : auto.sucursal,
                     getSucursales : sucursales,
-                    //session : req.session,
                     old : req.body,
                     errors : errors.mapped()
                 })
@@ -113,10 +108,18 @@ module.exports = {
         
     },
     borrarAuto: (req, res) => {
-        Auto.destroy({
-            where : { id : req.params.id}
-        })
-        .then(() => {
+        Auto.findByPk(req.params.id)
+        .then(auto => {
+            Auto.destroy({
+                where : { id : req.params.id}
+            })
+            .then(() => {
+                if (fs.existsSync(path.join(__dirname, "../../public/images", auto.imagen)) &&
+                    auto.imagen !== "default-image.png"){
+                    fs.unlinkSync( path.join(__dirname, "../../public/images", auto.imagen))
+                }
+            })
+            .catch(errors => console.log(errors));
             res.redirect('/admin/autos')
         })
         .catch(errors => console.log(errors));
@@ -136,7 +139,6 @@ module.exports = {
         .then(autos => {
             res.render('admin/adminAutos',{
                 getAutos : autos,
-                //session : req.session
             })
         })
     }

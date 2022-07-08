@@ -11,6 +11,6 @@ module.exports = [
         .isNumeric().withMessage('Pasa un año válido'),
     check('color')
         .notEmpty().withMessage('selecciona un color'),
-    check('sucursal')
+    check('sucursalId')
         .notEmpty().withMessage('selecciona una sucursal')
 ]

@@ -4,6 +4,7 @@
 <body>
     <%- include('../partials/headerAdmin.ejs')  %> 
     <script src="/javascript/imagePreview.js"></script>
+    <script src="/javascript/sucursalValidator.js"></script>
     <main class="container">
         <h3 class="text-center">Editar sucursal <%= sucursal.nombre %> </h3>
         <div class="container col-md-4">
@@ -11,17 +12,17 @@
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="inputName" name="nombre" value="<%= (locals.old && old.nombre) ? old.nombre : sucursal.nombre %>">
-                    <small class="text-danger"><%= (locals.errors  && errors.nombre) ? errors.nombre.msg : "" %></small>
+                    <small class="text-danger" id="errorNombre"><%= (locals.errors  && errors.nombre) ? errors.nombre.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="inputAddress" class="form-label">Dirección</label>
                     <input type="text" class="form-control" id="inputAddress" name="direccion" value="<%= (locals.old && old.direccion) ? old.direccion : sucursal.direccion %>">
-                    <small class="text-danger"><%= (locals.errors  && errors.direccion) ? errors.direccion.msg : "" %></small>
+                    <small class="text-danger" id="errorDireccion"><%= (locals.errors  && errors.direccion) ? errors.direccion.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="inputTel" class="form-label">Teléfono</label>
                     <input type="tel" class="form-control" id="inputTel" name="telefono" value="<%= (locals.old && old.telefono) ? old.telefono : sucursal.telefono %>">
-                    <small class="text-danger"><%= (locals.errors  && errors.telefono) ? errors.telefono.msg : "" %></small>
+                    <small class="text-danger" id="errorTelefono"><%= (locals.errors  && errors.telefono) ? errors.telefono.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <figure class="text-center">
@@ -33,9 +34,11 @@
                     <label for="inputFile" class="form-label">Imagen</label>
                     <input type="file" class="form-control" name="image" id="inputFile" onchange="fileValidation()">
                 </div>
+                <small class="text-danger" id="errorImagen"><%= (locals.errors  && errors.imagen) ? errors.imagen.msg : "" %></small>
                 <div class="col-12">
                     <button type="submit" class="btn btn-success">EDITAR</button>
                 </div>
+                <small class="text-danger" id="errorForm"></small>
             </form>
         </div>
     </main>

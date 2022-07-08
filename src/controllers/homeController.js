@@ -8,7 +8,6 @@ module.exports = {
             res.render('home', {
                 titulo: "Conocé nuestras sucursales",
                 sucursales,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors))    },
@@ -27,7 +26,6 @@ module.exports = {
             res.render('search',{
                 autos,
                 busqueda,
-                //session : req.session
             })
         })
         .catch(errors => console.log(errors))    }

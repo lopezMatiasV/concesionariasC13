@@ -1,4 +1,4 @@
-const { check } = require('express-validator');
+const { check, body } = require('express-validator');
 module.exports = [
     check('nombre')
         .notEmpty().withMessage('Tienes que otorgarle un nombre').bail()
@@ -9,4 +9,15 @@ module.exports = [
     check('telefono')
         .notEmpty().withMessage('Tienes que pasar un teléfono').bail()
         .isNumeric().withMessage('Pasa un teléfono válido'),
+    body('image')
+        .custom(( value, {req} ) => {
+            let allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+            if(!req.file){
+                return Promise.reject('campo requerido')
+            }if(!allowedExtensions.exec(req.file.filename)){
+                return Promise.reject('Solo archivos con estas extensiones .jpeg/.jpg/.png/.gif only.')
+            }else{
+                return true
+            }
+        })
 ]

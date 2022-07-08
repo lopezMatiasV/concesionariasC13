@@ -11,22 +11,22 @@
             <form class="row g-3" action="/admin/autos/agregarAuto" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <label for="marca" class="form-label">Marca</label>
-                    <input type="text" class="form-control" id="marca" name="marca">
+                    <input type="text" class="form-control" id="marca" name="marca" value="<%= (locals.old  && old.marca) ? old.marca : "" %>">
                     <small class="text-danger" id="errorMarca"><%= (locals.errors  && errors.marca) ? errors.marca.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="modelo" class="form-label">Modelo</label>
-                    <input type="text" class="form-control" id="modelo" name="modelo">
+                    <input type="text" class="form-control" id="modelo" name="modelo" value="<%= (locals.old  && old.modelo) ? old.modelo : "" %>">
                     <small class="text-danger" id="errorModelo"><%= (locals.errors  && errors.modelo) ? errors.modelo.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="anio" class="form-label">Año</label>
-                    <input type="number" class="form-control" id="anio" name="anio">
+                    <input type="number" class="form-control" id="anio" name="anio" value="<%= (locals.old  && old.anio) ? old.anio : "" %>">
                     <small class="text-danger" id="errorAnio"><%= (locals.errors  && errors.anio) ? errors.anio.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="color" class="form-label">Color</label>
-                    <input type="text" class="form-control" id="color" name="color">
+                    <input type="text" class="form-control" id="color" name="color" value="<%= (locals.old  && old.color) ? old.color : "" %>">
                     <small class="text-danger" id="errorColor"><%= (locals.errors  && errors.color) ? errors.color.msg : "" %></small>
                 </div>
                 <div class="col-12">
@@ -45,7 +45,7 @@
                     <label for="inputFile" class="form-label">Imagen</label>
                     <input type="file" class="form-control" id="inputFile" name="image" onchange="fileValidation()"/>
                 </div>
-                <small class="text-danger" id="errorImagen"><%= (locals.errors  && errors.imagen) ? errors.imagen.msg : "" %></small>
+                <small class="text-danger" id="errorImagen"><%= (locals.errors  && errors.image) ? errors.image.msg : "" %></small>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">AGREGAR</button>
                 </div>

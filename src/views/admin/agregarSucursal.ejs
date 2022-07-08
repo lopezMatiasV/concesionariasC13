@@ -11,17 +11,17 @@
             <form class="row g-3" action="/admin/sucursales/agregarSucursal" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" name="nombre">
+                    <input type="text" class="form-control" id="inputName" name="nombre" value="<%= (locals.old  && old.nombre) ? old.nombre : "" %>">
                     <small class="text-danger" id="errorNombre"><%= (locals.errors  && errors.nombre) ? errors.nombre.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="inputAddress" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="inputAddress" name="direccion">
+                    <input type="text" class="form-control" id="inputAddress" name="direccion" value="<%= (locals.old  && old.direccion) ? old.direccion : "" %>">
                     <small class="text-danger" id="errorDireccion"><%= (locals.errors  && errors.direccion) ? errors.direccion.msg : "" %></small>
                 </div>
                 <div class="col-12">
                     <label for="inputTel" class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" id="inputTel" name="telefono">
+                    <input type="tel" class="form-control" id="inputTel" name="telefono" value="<%= (locals.old  && old.telefono) ? old.telefono : "" %>">
                     <small class="text-danger" id="errorTelefono"><%= (locals.errors  && errors.telefono) ? errors.telefono.msg : "" %></small>
                 </div>
                 <!-- Imagen-->
@@ -31,7 +31,7 @@
                     <label for="inputFile" class="form-label">Imagen</label>
                     <input type="file" class="form-control" id="inputFile" name="image" onchange="fileValidation()"/>
                 </div>
-                <small class="text-danger" id="errorImagen"><%= (locals.errors  && errors.imagen) ? errors.imagen.msg : "" %></small>
+                <small class="text-danger" id="errorImagen"><%= (locals.errors  && errors.image) ? errors.image.msg : "" %></small>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">AGREGAR</button>
                 </div>

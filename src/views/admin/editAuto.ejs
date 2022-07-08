@@ -47,7 +47,7 @@
                     <label for="inputFile" class="form-label">Imagen</label>
                     <input type="file" class="form-control" name="image" id="inputFile" onchange="fileValidation()"/>
                 </div>
-                <small class="text-danger" id="errorImagen"><%= (locals.errors  && errors.imagen) ? errors.imagen.msg : "" %></small>
+                <small class="text-danger" id="errorImagen"><%= (locals.errors  && errors.image) ? errors.image.msg : "" %></small>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">EDITAR</button>
                 </div>

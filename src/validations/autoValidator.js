@@ -1,4 +1,4 @@
-const { check } = require('express-validator');
+const { check, body } = require('express-validator');
 module.exports = [
     check('marca')
         .notEmpty().withMessage('Tienes que otorgarle un marca').bail()
@@ -12,5 +12,16 @@ module.exports = [
     check('color')
         .notEmpty().withMessage('selecciona un color'),
     check('sucursalId')
-        .notEmpty().withMessage('selecciona una sucursal')
+        .notEmpty().withMessage('selecciona una sucursal'),
+    body('image')
+        .custom(( value, {req} ) => {
+            let allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+            if(!req.file){
+                return Promise.reject('campo requerido')
+            }if(!allowedExtensions.exec(req.file.filename)){
+                return Promise.reject('Solo archivos con estas extensiones .jpeg/.jpg/.png/.gif only.')
+            }else{
+                return true
+            }
+        })
 ]

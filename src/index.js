@@ -15,6 +15,8 @@ let adminSucursalesRouter = require('./routes/adminSucursales');
 let adminAutosRouter = require('./routes/adminAutos')
 let adminUsersRouter = require('./routes/adminUsers')
 let apiUserRouter = require('./routes/apisRoutes/userRouter')
+let apiSucursalesRouter = require('./routes/apisRoutes/sucursalesRouter')
+let apiAutosRouter = require('./routes/apisRoutes/autosRouter')
 let { cookieCheck, adminCheck, localsCheck } = require('./middlewares/usersMiddlewares')
 
 /* Vistas */
@@ -46,6 +48,8 @@ app.use('/admin/autos', /* adminCheck , */ adminAutosRouter);
 app.use('/admin/users', /* adminCheck , */ adminUsersRouter)
 app.use('/users', usersRouter)
 app.use('/apis/usuarios', apiUserRouter)
+app.use('/apis/sucursales', apiSucursalesRouter)
+app.use('/apis/autos', apiAutosRouter)
 
 /* Vista not found */
 app.use((req, res, next) => {

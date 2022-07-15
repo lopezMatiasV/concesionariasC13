@@ -27,8 +27,8 @@ module.exports = {
         })
         .catch((error) => res.status(400).send(error))
     },
-    one : async (req, res) => {
-        await Usuario.findByPk(req.params.id)
+    one : (req, res) => {
+        Usuario.findByPk(req.params.id)
         .then((result) => {
             if (result !== 0) {
                 res.status(200).json({

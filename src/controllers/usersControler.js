@@ -84,8 +84,35 @@ module.exports = {
         })
         .catch(errors => console.log(errors))
     },
-    editProfile : (req, res) => {
-        Usuario.findByPk(req.session.user.id)
+    editProfile : async (req, res) => {
+        try {
+            let usuarioEdit = await Usuario.findByPk(req.params.id)
+            await Usuario.update({
+                ...req.body,
+                avatar: req.file ? req.file.filename : req.session.user.avatar
+            },{
+                where : {id : req.params.id}
+            })
+            let usuario = await Usuario.findByPk(req.params.id)
+            if(req.file){
+                if (fs.existsSync(path.join(__dirname, "../../public/images/avatars", usuario.avatar)) &&
+                    usuario.avatar !== "default-image.png"){
+                    fs.unlinkSync( path.join(__dirname, "../../public/images/avatars", usuarioEdit.avatar))
+                }
+            }
+            req.session.user = {
+                id : usuario.id,
+                nombre : usuario.nombre,
+                apellido : usuario.apellido,
+                avatar : usuario.avatar,
+                rol : usuario.rol
+            }
+            res.locals.user = req.session.user;
+            res.redirect('/users/perfil')
+        } catch (error) {
+            console.log(error);
+        }
+        /* Usuario.findByPk(req.session.user.id)
         .then(usuario => {
             Usuario.update({
                 ...req.body,
@@ -105,7 +132,7 @@ module.exports = {
             res.redirect('/users/perfil')
         })
         .catch(errors => console.log(errors))
-        
+         */
     },
     deleteUser : (req, res) => {
         req.session.destroy()
